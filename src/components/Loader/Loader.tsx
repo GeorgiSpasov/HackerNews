@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator, Modal, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {BlurView} from '@react-native-community/blur';
-import {RootState} from 'src/store/store';
+import {RootState} from '../../store/store';
 import GlobalStyles from '../../GlobalStyles';
 import styles from './LoaderStyle';
 

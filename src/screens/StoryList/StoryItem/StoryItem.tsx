@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import moment from 'moment';
 import {Story} from '../../../store/story/storyTypes';
 
 import styles from './StoryItemStyle';
 
-const StoryItem = ({item, index}: {item: Story; index: number}) => {
+interface StoryItemProps {
+  item: Story;
+  index: number;
+}
+
+const StoryItem: FC<StoryItemProps> = props => {
+  const {item, index} = props;
+
   return (
     <View style={styles.storyContainer}>
       <View style={styles.indexContainer}>
