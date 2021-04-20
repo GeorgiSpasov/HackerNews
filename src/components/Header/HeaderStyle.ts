@@ -6,7 +6,6 @@ const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: GlobalStyles.accentColor,
     padding: 2,
   },
@@ -17,6 +16,11 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: width / 22,
     fontWeight: 'bold',
+    color: GlobalStyles.primaryTextColor,
+    alignSelf: 'center',
+  },
+  subText: {
+    fontSize: width / 32,
     color: GlobalStyles.primaryTextColor,
   },
 });

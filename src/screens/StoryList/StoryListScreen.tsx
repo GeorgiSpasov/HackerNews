@@ -17,8 +17,8 @@ const StoryListScreen = () => {
     dispatch(loadStories(10));
   }, [dispatch]);
 
-  const renderStoryItem = ({item}: {item: Story}) => {
-    return <StoryItem item={item} />;
+  const renderStoryItem = ({item, index}: {item: Story; index: number}) => {
+    return <StoryItem item={item} index={index} />;
   };
 
   return (
@@ -28,7 +28,7 @@ const StoryListScreen = () => {
         <View style={styles.listContainer}>
           <FlatList
             data={stories}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={item => item.id.toString()}
             renderItem={renderStoryItem}
             showsVerticalScrollIndicator={false}
           />

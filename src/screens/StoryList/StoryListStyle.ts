@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-    paddingHorizontal: width / 24,
+    paddingRight: width / 32,
+    paddingLeft: width / 48,
   },
 });
 

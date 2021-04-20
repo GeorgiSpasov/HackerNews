@@ -11,6 +11,7 @@ const Notification = () => {
         <HackerNewsIcon />
       </View>
       <Text style={styles.headerText}>Hacker News</Text>
+      <Text style={styles.subText}>Top 10 Random</Text>
     </View>
   );
 };

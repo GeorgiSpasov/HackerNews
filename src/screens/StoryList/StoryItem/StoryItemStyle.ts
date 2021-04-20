@@ -6,6 +6,18 @@ const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   storyContainer: {
     paddingVertical: width / 56,
+    flexDirection: 'row',
+  },
+  indexContainer: {
+    alignItems: 'center',
+  },
+  indexText: {
+    fontSize: width / 22,
+    color: GlobalStyles.secondaryTextColor,
+    marginRight: 4,
+  },
+  content: {
+    flex: 1,
   },
   storyTitle: {
     fontSize: width / 22,
