@@ -5,6 +5,7 @@ import {
   FlatList,
   Modal,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import {useSelector, useDispatch} from 'react-redux';
@@ -13,6 +14,8 @@ import {loadStories} from '../../store/story/storyActions';
 import {Story} from '../../store/story/storyTypes';
 import Header from '../../components/Header/Header';
 import StoryItem from './StoryItem/StoryItem';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './StoryListStyle';
 
@@ -29,6 +32,10 @@ const StoryListScreen = () => {
   const viewStory = (url: string) => {
     setStoryUrl(url);
     setModalVisible(true);
+  };
+
+  const openInBrowser = async () => {
+    await Linking.openURL(storyUrl);
   };
 
   const renderStoryItem = ({item, index}: {item: Story; index: number}) => {
@@ -53,15 +60,26 @@ const StoryListScreen = () => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            setModalVisible(false);
+            setModalVisible(!modalVisible);
             setStoryUrl('');
           }}>
           <SafeAreaView style={styles.container}>
             <TouchableOpacity
               style={styles.placeHolder}
-              onPress={() => setModalVisible(false)}
+              onPress={() => setModalVisible(!modalVisible)}
             />
-            <View style={styles.separator} />
+            <View style={styles.separator}>
+              <MaterialIcon
+                name="open-in-browser"
+                style={styles.menuIcon}
+                onPress={openInBrowser}
+              />
+              <AntDesignIcon
+                name="closesquareo"
+                style={styles.menuIcon}
+                onPress={() => setModalVisible(!modalVisible)}
+              />
+            </View>
             <View style={styles.modalContent}>
               <WebView source={{uri: storyUrl}} />
             </View>

@@ -20,8 +20,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   separator: {
-    height: width / 36,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: width / 56,
     backgroundColor: GlobalStyles.accentColor,
+  },
+  menuIcon: {
+    fontSize: width / 20,
   },
   modalContent: {
     flex: 1,
