@@ -26,7 +26,7 @@ const fetchStoryItem = async (
     id: storyItem.id,
     title: storyItem.title,
     url: storyItem.url,
-    timestamp: storyItem.time,
+    timestamp: storyItem.time * 1000,
     score: storyItem.score,
     authorId: storyItem.by,
   };
