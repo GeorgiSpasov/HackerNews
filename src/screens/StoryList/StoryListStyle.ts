@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import GlobalStyles from '../../GlobalStyles';
 
 const {width} = Dimensions.get('window');
 
@@ -7,13 +8,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5ee',
   },
-  body: {
+  container: {
     flex: 1,
   },
   listContainer: {
     flex: 1,
     paddingRight: width / 32,
     paddingLeft: width / 48,
+  },
+  placeHolder: {
+    flex: 1,
+  },
+  separator: {
+    height: width / 36,
+    backgroundColor: GlobalStyles.accentColor,
+  },
+  modalContent: {
+    flex: 1,
+  },
+  modalText: {
+    fontSize: width / 3,
   },
 });
 

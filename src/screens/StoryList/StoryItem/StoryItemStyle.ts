@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   storyUrl: {
-    fontSize: width / 28,
+    fontSize: width / 32,
     color: GlobalStyles.secondaryTextColor,
     paddingVertical: 2,
   },

@@ -1,20 +1,23 @@
 import React, {FC} from 'react';
-import {View, Text} from 'react-native';
+import {TouchableOpacity, View, Text} from 'react-native';
 import moment from 'moment';
 import {Story} from '../../../store/story/storyTypes';
 
 import styles from './StoryItemStyle';
 
-interface StoryItemProps {
+type StoryItemProps = {
   item: Story;
   index: number;
-}
+  viewStory: (url: string) => void;
+};
 
 const StoryItem: FC<StoryItemProps> = props => {
-  const {item, index} = props;
+  const {item, index, viewStory} = props;
 
   return (
-    <View style={styles.storyContainer}>
+    <TouchableOpacity
+      style={styles.storyContainer}
+      onPress={() => viewStory(item.url)}>
       <View style={styles.indexContainer}>
         <Text style={styles.indexText}>{index + 1}.</Text>
       </View>
@@ -27,7 +30,7 @@ const StoryItem: FC<StoryItemProps> = props => {
           } karma] ${moment(item.timestamp).format('MMM D, YYYY')}`}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
