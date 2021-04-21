@@ -1,14 +1,19 @@
 import {Story, User} from '../store/story/storyTypes';
 import requester from '../utils/requester';
 
-const _generateRandomIds = (count: number, ids: string[]) => {
-  const randomIds = [];
-  for (let i = 0; i < count; i++) {
-    const randomIndex = Math.floor(Math.random() * ids.length);
-    const randomId = ids[randomIndex];
-    randomIds.push(randomId);
+const _getRndUniqueIndexes = (
+  count: number,
+  length: number,
+  uniqueIndexes: {[key: number]: boolean} = {},
+): any | number[] => {
+  const randomIndex = Math.floor(Math.random() * length);
+  uniqueIndexes[randomIndex] = true;
+  const needsMore = Object.keys(uniqueIndexes).length < count;
+  if (needsMore) {
+    return _getRndUniqueIndexes(count, length, uniqueIndexes);
+  } else {
+    return Object.keys(uniqueIndexes).map(keyString => +keyString);
   }
-  return randomIds;
 };
 
 const fetchTopStories = async (): Promise<string[]> => {
@@ -41,7 +46,10 @@ const fetchUser = async (userId: string): Promise<User> => {
 
 const loadTopStories = async (count: number): Promise<Story[]> => {
   const topStoryIds = await fetchTopStories();
-  const randomIds = _generateRandomIds(count, topStoryIds);
+  const randomIds = (_getRndUniqueIndexes(
+    count,
+    topStoryIds.length,
+  ) as number[]).map(index => topStoryIds[index]);
   const storyPromises = randomIds.map(id => fetchStoryItem(id));
   const stories = await Promise.all(storyPromises);
   const userPromises = stories.map(story => fetchUser(story.authorId));
