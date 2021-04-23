@@ -54,7 +54,7 @@ const loadTopStories = async (count: number): Promise<Story[]> => {
   const stories = await Promise.all(storyPromises);
   const userPromises = stories.map(story => fetchUser(story.authorId));
   const users = await Promise.all(userPromises);
-  stories.forEach((story, i) => (story.user = users[i]));
+  stories.forEach((story, i) => Object.assign(story, {user: users[i]}));
   stories.sort((a, b) => b.score - a.score);
 
   return stories as Story[];
